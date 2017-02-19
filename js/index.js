@@ -7,71 +7,91 @@ $(document).ready(function() {
   let space = ' ';
   let newNum1 = '';
   let arrNum1 = [];
-  console.log("SCREEN", $(screen));
+  // console.log("SCREEN", $(screen));
 
   $('span').click(function(event) {
     let operand = $(event.target).text()
-    //console.log("operand", operand);
-
-    // if (!$(this).hasClass("operator")) {
-    //   n1 = (operand);
-    //   n2 = (operand);
-    //   screen.append(n1)
-    //   //console.log(n1);
-    // //  console.log("This", this);
-    // } else if ($(this).hasClass("operator")) {
-    //   temp = n1;
-    //   n1 = "";
-    //   operator = this.innerHTML;
-    //   screen.append(space + operator + space)
-    //   console.log("temp", temp);
-    //   //temp = n1 + space + this.innerHTML;
-    //
-    //   //console.log("OPERATOR?", operator);
-    //   //screen.text(space + temp + space)
-    // }
+    console.log("Array Num 1", arrNum1);
 
     if (!$(this).hasClass("operator")) {
-
+      if (screen.text() == 0) {
+        screen.text("");
+      }
       n1 += operand;
-
+      console.log("n1", n1);
       screen.append(operand);
-      console.log(n1);
+      // console.log(n1);
     } else if ($(this).hasClass("operator")) {
-      arrNum1.push(n1);
-      console.log(arrNum1);
-      operator = this.innerHTML;
+      console.log("I'm here....");
+
+      if (arrNum1.length === 0) {
+        screen.text("Error!")
+      }
+
+      if (n1 != "") {
+        arrNum1.push(n1);
+      }
+      // console.log(arrNum1);
+      if (this.innerText !== '=') {
+        // console.log("TYPE OF OPERATOR", operator);
+        // console.log("THIS HTML typeof length", this.innerText.length);
+
+        operator = this.innerHTML;
+      }
+
+
       screen.append(space + operator + space);
       n1 = '';
-    } else {}
 
-    if (true) {
+      if ($(event.target).attr("id") === "clear") {
+        arrNum1 = [];
+        n1 = "";
+        screen.text("0");
+      }
+
+      if ($(event.target).attr("id") === "equals") {
+        // console.log("I clicked equals");
+        // console.log("O", operator);
+
+        // let operator =
+        switch (operator) {
+          case '+':
+            result = +(arrNum1[0]) + +(arrNum1[1])
+            screen.text(result)
+            console.log("RESULT +", result);
+            arrNum1 = [];
+            arrNum1.push(result)
+            break;
+          case '-':
+            result = +(arrNum1[0]) - +(arrNum1[1])
+            screen.text(result)
+            console.log("RESULT -", result);
+            arrNum1 = [];
+            arrNum1.push(result)
+            break;
+          case 'x':
+            result = +(arrNum1[0]) * +(arrNum1[1])
+            screen.text(result)
+            console.log("RESULT *", result);
+            arrNum1 = [];
+            arrNum1.push(result)
+            break;
+          case '÷':
+            result = +(arrNum1[0]) / +(arrNum1[1])
+            screen.text(result)
+            console.log("RESULT ÷", result);
+            arrNum1 = [];
+            arrNum1.push(result)
+            break;
+          default:
+            return "whoops";
+        }
+      }
+
+      // console.log("MY EVENT TARGET", $(event.target).text());
+
 
     }
-
-
-    switch (operator) {
-      case '+':
-        result = +(n1) + +(n2)
-        break;
-      case '-':
-        result = +(n1) - +(n2)
-        break;
-      case '*':
-        result = +(n1) + +(n2)
-        break;
-      case '-':
-        result = +(n1) - +(n2)
-        break;
-      default:
-        return true;
-    }
-
-
-    // console.log("MY EVENT TARGET", $(event.target).text());
-
-
-
 
 
 
