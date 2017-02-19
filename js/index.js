@@ -5,8 +5,8 @@ $(document).ready(function() {
   let operator = '';
   let result = '';
   let space = ' ';
-  let temp = '';
-
+  let newNum1 = '';
+  let arrNum1 = [];
   console.log("SCREEN", $(screen));
 
   $('span').click(function(event) {
@@ -31,20 +31,19 @@ $(document).ready(function() {
     //   //screen.text(space + temp + space)
     // }
 
-      if (!$(this).hasClass("operator")) {
-        n1 = (operand);
-        screen.append(n1);
+    if (!$(this).hasClass("operator")) {
 
-        console.log("screen", $(screen).text());
-        operand = ""
-      }
-      else if ($(this).hasClass("operator")) {
-        temp = n1
-        console.log("temp",temp);
-        operator = this.innerHTML;
-        screen.append(space + operator + space);
-      } else {
-    }
+      n1 += operand;
+
+      screen.append(operand);
+      console.log(n1);
+    } else if ($(this).hasClass("operator")) {
+      arrNum1.push(n1);
+      console.log(arrNum1);
+      operator = this.innerHTML;
+      screen.append(space + operator + space);
+      n1 = '';
+    } else {}
 
     if (true) {
 
