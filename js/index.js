@@ -24,9 +24,9 @@ $(document).ready(function() {
     } else if ($(this).hasClass("operator")) {
       console.log("I'm here....");
 
-      if (arrNum1.length === 0) {
-        screen.text("Error!")
-      }
+      // if (arrNum1.length === 0) {
+      //   screen.text("Error!")
+      // }
 
       if (n1 != "") {
         arrNum1.push(n1);
